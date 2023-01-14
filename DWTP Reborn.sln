@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWTP Reborn", "DWTP Reborn.csproj", "{347B41EF-EA59-4F0C-B9AE-50C37474F133}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{347B41EF-EA59-4F0C-B9AE-50C37474F133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{347B41EF-EA59-4F0C-B9AE-50C37474F133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{347B41EF-EA59-4F0C-B9AE-50C37474F133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{347B41EF-EA59-4F0C-B9AE-50C37474F133}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C660BCDD-46B5-4DD1-A32C-030359E0643A}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>DWTP_Reborn</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Mecenat.jpg" />
+    <None Remove="settings_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Mecenat.jpg" />
+    <Resource Include="settings_icon.png" />
+  </ItemGroup>
+
+</Project>
