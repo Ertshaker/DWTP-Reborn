@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:viewModel="clr-namespace:DWTP_Reborn.ViewModels"
              xmlns:view="clr-namespace:DWTP_Reborn.Views"
-             xmlns:local="clr-namespace:DWTP_Reborn">
+             xmlns:local="clr-namespace:DWTP_Reborn"
+             StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/MainMenuButtonStyle.xaml"/>
-                <ResourceDictionary Source="Styles/RegularButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:WallpaperChangerViewModel}">

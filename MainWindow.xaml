@@ -7,15 +7,16 @@
         xmlns:viewModel="clr-namespace:DWTP_Reborn.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="450"
-        Width="800"
+        Height="450" Width="800"
         ResizeMode="NoResize"
-        Background="White">
+        WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent">
+
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
 
-    <Grid Background="#423a24">
+    <Grid Background="#FF1A1A1A">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>

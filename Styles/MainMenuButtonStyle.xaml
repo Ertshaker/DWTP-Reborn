@@ -9,6 +9,7 @@
                     <ControlTemplate TargetType="RadioButton">
                         <Grid VerticalAlignment="Stretch"
                               HorizontalAlignment="Stretch"
+                              Cursor="Hand"
                               Background="{TemplateBinding Background}">
 
                             <TextBlock Text="{TemplateBinding Content}"
@@ -27,14 +28,14 @@
         
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="#e6e6e6"/>
+                <Setter Property="Background" Value="#FFAFADAD"/>
             </Trigger>
             
-            <Trigger Property="IsMouseOver" Value="True">
+            <!--Trigger Property="IsMouseOver" Value="True">
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" 
+                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
                                             To="#dddddd" 
                                             Duration="0:0:0.1"/>
                         </Storyboard>
@@ -49,7 +50,7 @@
                         </Storyboard>
                     </BeginStoryboard>
                 </Trigger.ExitActions>
-            </Trigger>
+            </Trigger-->
         </Style.Triggers>
     </Style>
     

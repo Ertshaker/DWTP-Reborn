@@ -3,98 +3,108 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:DWTP_Reborn.Views"
+             xmlns:local="clr-namespace:DWTP_Reborn.Views" 
+             xmlns:viewModel="clr-namespace:DWTP_Reborn.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="700"
              x:Name="Durak">
+    <UserControl.DataContext>
+        <viewModel:WallpaperChangerViewModel/>
+    </UserControl.DataContext>
+
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="\Styles/StopButtonStyle.xaml"/>
+                <ResourceDictionary Source="\Styles/MainMenuButtonStyle.xaml"/>
                 <ResourceDictionary Source="\Styles/StartButtonStyle.xaml"/>
-                <ResourceDictionary Source="\Styles/NightDayButtonStyle.xaml"/>
-                <ResourceDictionary Source="\Styles/NormalButtonStyle.xaml"/>
-                <ResourceDictionary Source="\Styles/SettingsButtonStyle.xaml"/>
+                <ResourceDictionary Source="\Styles/SaveButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="60"/>
-        </Grid.RowDefinitions>
-
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Background="#FF1F1F1F" Margin="-1">
+            <StackPanel>
+                <StackPanel.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="{x:Type Label}">
+                            <Setter Property="Foreground"  Value="White"/>
+                        </Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Background"  Value="#FF3D3D3D"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="Foreground"  Value="#FFB7B7B7"/>
+                            <Setter Property="Height" Value="20"/>
+                            <Setter Property="Width"  Value="Auto"/>
+                            <Setter Property="Margin"  Value="0,0,5,0"/>
+                        </Style>
+                    </ResourceDictionary>
+                </StackPanel.Resources>
+                
+                <Label Content="Частота:"/>
+                <TextBox Text="{Binding CurrentConfig.Frequency}"/>
 
-        <StackPanel Grid.Row="0" Grid.Column="0"
-                    HorizontalAlignment="Center" VerticalAlignment="Center" 
-                    Orientation="Horizontal">
+                <Label Content="Обычная папка:"/>
+                <TextBox Text="{Binding CurrentConfig.NormalFolderPath}"/>
 
-            <RadioButton Grid.Column="0" Grid.Row="0"
-                         Style="{StaticResource NightDayButtonStyle}"
-                         Content="День/ночь" FontSize="16"
-                         Width="150" Height="50"
-                         HorizontalAlignment="Center"/>
+                <Label Content="Дневная папка:"/>
+                <TextBox Text="{Binding CurrentConfig.DayFolderPath}"/>
 
-            <RadioButton Grid.Column="0" Grid.Row="0"
-                         Style="{StaticResource NormalButtonStyle}"
-                         Content="Обычный" FontSize="16"
-                         Margin="20 0 0 0"
-                         Width="150" Height="50"
-                         HorizontalAlignment="Right"/>
-        </StackPanel>
+                <Label Content="Ночная папка:"/>
+                <TextBox Text="{Binding CurrentConfig.NightFolderPath}"/>
 
-        <Image Grid.Column="1" Grid.Row="0"
-               Source="/settings_icon.png" Stretch="Uniform"/>
+                <Label Content="Дневное время:"/>
+                <TextBox Text="{Binding CurrentConfig.DayTime}"/>
 
-        <Grid Grid.Row="2" Grid.Column="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                <Label Content="Ночное время:"/>
+                <TextBox Text="{Binding CurrentConfig.NightTime}"/>
 
-            <Button Grid.Column="0"
-                    HorizontalAlignment="Right" VerticalAlignment="Center"
-                    Style ="{StaticResource StartButtonStyle}" 
-                    FontSize="24"
-                    Padding="25 10 25 10"
-                    Content="Start"/>
+                <Label Content="Расширения:"/>
+                <TextBox Text="{Binding CurrentConfig.ExtensionsList}"/>
 
-            <Button Grid.Column="4"
-                    HorizontalAlignment="Left" VerticalAlignment="Center"
-                    Style="{StaticResource StopButtonStyle}"
-                    FontSize="24"
-                    Padding="25 10 25 10"
-                    Content="Stop"/>
+                <Button Height="20" Width="50" Margin="8"
+                        Style="{StaticResource SaveButtonStyle}"
+                        Command="{Binding SaveData}" Background="Black" Foreground="White"/>
+
+            </StackPanel>
         </Grid>
-        <Image Grid.Column="0" Grid.Row="1" 
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               Height="auto" Width="auto"
-               Source="/Mecenat.jpg"/>
+        <Grid Grid.Column="1" Background="#FF383838">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
 
+            <StackPanel Grid.Row="0"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" 
+                        Orientation="Horizontal">
 
-        <!--RadioButton x:Name="DayNightRadioButton" Content="День/ночь" HorizontalAlignment="Left" Margin="372,19,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="NormalRadioButton" Content="Обычный" HorizontalAlignment="Left" Margin="130,19,0,0" VerticalAlignment="Top"/>
+                <RadioButton Grid.Row="0"
+                             Style="{StaticResource MainMenuButtonStyle}"
+                             Content="День/ночь" FontSize="16"
+                             IsChecked="True"
+                             Width="150" Height="50"/>
+                
+                <RadioButton Grid.Row="0"
+                             IsChecked="{Binding CurrentConfig.NormalState}"
+                             Style="{StaticResource MainMenuButtonStyle}"
+                             Content="Обычный" FontSize="16"
+                             Margin="20 0 0 0"
+                             Width="150" Height="50"/>
+            </StackPanel>
 
-        <Button x:Name="Settings" HorizontalAlignment="Right" VerticalAlignment="Top" Width="50" Height="50" Click="Settings_Click" Background="Black">
-            <Button.OpacityMask>
-                <ImageBrush ImageSource="/Pictures/settings_icon.png" Stretch="Uniform"/>
-            </Button.OpacityMask>
-        </Button>
-        <Button x:Name="Menu" Width="50" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" OpacityMask="Black" Click="Menu_Click">
-            <Button.Background>
-                <ImageBrush ImageSource="/Pictures/Menu_Icon.png" Stretch="Uniform"/>
-            </Button.Background>
-        </Button>
+            <Button Grid.Row="2"
+                    Style="{StaticResource StartButtonStyle}"
+                    Command="{Binding ChangeWallpaper}"/>
 
-        <Button x:Name="StartButton" Content="Начать" HorizontalAlignment="Left" Margin="188,306,0,0" VerticalAlignment="Top" Width="94" Height="35" Click="Change_Click" Background="White"/>
-        <Button x:Name="StopButton" Content="Остановить" HorizontalAlignment="Left" Margin="299,306,0,0" VerticalAlignment="Top" Width="94" Height="35" Click="Stop_Click" Background="White" IsEnabled="False"/>
-        <Button Content="Button" HorizontalAlignment="Right" VerticalAlignment="Bottom" Opacity="0" Click="Button_Click"/ -->
+            <Image Grid.Column="0" Grid.Row="1" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Height="auto" Width="auto"
+                   Source="/mecenat.jpg"/>
+        </Grid>
     </Grid>
 </UserControl>

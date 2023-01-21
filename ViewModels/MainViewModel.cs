@@ -1,17 +1,10 @@
 ﻿using DWTP_Reborn.Main;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DWTP_Reborn.ViewModels
 {
     class MainViewModel : ObservableObject
     {
         public RelayCommand WallpaperChangerViewCommand { get; set; }
-
-        public RelayCommand WallpaperChangerChangeWallpaper { get; set; }
 
         public WallpaperChangerViewModel WallpaperChangerVM { get; set; }
 
@@ -36,11 +29,6 @@ namespace DWTP_Reborn.ViewModels
             WallpaperChangerViewCommand = new RelayCommand(o => 
             {
                 CurrentView = WallpaperChangerVM;
-            });
-
-            WallpaperChangerChangeWallpaper = new RelayCommand(o => 
-            {
-                WallpaperChangerVM.Start();
             });
         }
     }

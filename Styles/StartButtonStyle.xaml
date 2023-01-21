@@ -1,13 +1,21 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style x:Key="StartButtonStyle" BasedOn="{StaticResource RegularButtonStyle}" TargetType="Button">
+    <Style x:Key="StartButtonStyle" TargetType="Button">
         <Style.Setters>
-            <Setter Property="Background">
+            <Setter Property="Template">
                 <Setter.Value>
-                    <LinearGradientBrush>
-                        <GradientStop x:Name="GradientStop1" Color="#27db58" Offset="0"/>
-                        <GradientStop x:Name="GradientStop2" Color="#00ff00" Offset="1"/>
-                    </LinearGradientBrush>
+                    <ControlTemplate TargetType="Button">
+                        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                              Cursor="Hand">
+                            <Polygon Grid.Row="2" Grid.Column="0"
+                                 Stroke="#FF8AE28A" StrokeThickness="3"
+                                 Fill="Transparent"
+                                 Points="0,0 30,15 0,30" 
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"/>
+                            <ContentControl/>
+                        </Grid>
+                    </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style.Setters>
