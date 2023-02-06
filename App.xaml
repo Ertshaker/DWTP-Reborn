@@ -9,10 +9,15 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/MainMenuButtonStyle.xaml"/>
+                <ResourceDictionary Source="Styles/ExitButtonStyle.xaml"/>
+                <ResourceDictionary Source="Styles/CollapseButtonStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type viewModel:WallpaperChangerViewModel}">
                 <view:WallpaperChangerView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:FileSorterViewModel}">
+                <view:FileSorterView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

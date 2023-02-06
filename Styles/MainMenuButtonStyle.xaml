@@ -7,9 +7,11 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
-                        <Grid VerticalAlignment="Stretch"
+                        <Border x:Name="grid"
+                              VerticalAlignment="Stretch"
                               HorizontalAlignment="Stretch"
                               Cursor="Hand"
+                              CornerRadius="15"
                               Background="{TemplateBinding Background}">
 
                             <TextBlock Text="{TemplateBinding Content}"
@@ -17,25 +19,30 @@
                                        HorizontalAlignment="Center"
                                        FontSize="20"
                                        FontWeight="Bold"/>
-                        </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" TargetName="grid" Value="#FF292929"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            
+
             <Setter Property="Height" Value="75"/>
             <Setter Property="Width" Value="Auto"/>
         </Style.Setters>
-        
+
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="#FFAFADAD"/>
+                <Setter Property="Background" Value="#e6e6e6"/>
             </Trigger>
-            
+
             <!--Trigger Property="IsMouseOver" Value="True">
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                            <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" 
                                             To="#dddddd" 
                                             Duration="0:0:0.1"/>
                         </Storyboard>
@@ -53,5 +60,5 @@
             </Trigger-->
         </Style.Triggers>
     </Style>
-    
+
 </ResourceDictionary>

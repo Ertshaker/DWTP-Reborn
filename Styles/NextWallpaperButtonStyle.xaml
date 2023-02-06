@@ -1,24 +1,30 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style x:Key="StartButtonStyle" TargetType="Button">
+    <Style x:Key="NextWallpaperButtonStyle" TargetType="Button">
         <Style.Setters>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                              Cursor="Hand">
-                            <Polygon Grid.Row="2" Grid.Column="0"
-                                     x:Name="polygon"
-                                     Stroke="{TemplateBinding Background}" StrokeThickness="3.5"
+                        <Grid VerticalAlignment="Center" HorizontalAlignment="Center"
+                              Cursor="Hand" Background="Transparent">
+                            <Polygon x:Name="polygon" Stroke="{TemplateBinding Background}" 
+                                     StrokeThickness="4"
+                                     Points="0,0 23,15 0,30" 
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"/>
+                            <Polyline x:Name="polyline" Stroke="{TemplateBinding Background}" 
+                                     StrokeThickness="4.5"
                                      Fill="Transparent"
-                                     Points="0,0 25,15 0,30" 
-                                     VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                     Points="25,-5 25,33" 
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"/>
                             <ContentControl/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding CanStop}" Value="True">
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Stroke" TargetName="polyline" Value="Transparent"/>
                                 <Setter Property="Stroke" TargetName="polygon" Value="Transparent"/>
-                            </DataTrigger>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -30,7 +36,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" 
-                                            To="#FF9CE49C" 
+                                            To="LightGray" 
                                             Duration="0:0:0.1"/>
                         </Storyboard>
                     </BeginStoryboard>
@@ -39,16 +45,12 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" 
-                                            To="#FF63E663" 
+                                            To="Gray" 
                                             Duration="0:0:0.1"/>
                         </Storyboard>
                     </BeginStoryboard>
                 </Trigger.ExitActions>
             </Trigger>
-            <DataTrigger Binding="{Binding CanStop}" Value="True">
-                <Setter Property="IsEnabled" Value="False"/>
-                
-            </DataTrigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>

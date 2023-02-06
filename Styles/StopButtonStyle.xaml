@@ -1,24 +1,24 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style x:Key="StartButtonStyle" TargetType="Button">
+    <Style x:Key="StopButtonStyle" TargetType="Button">
         <Style.Setters>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                        <Grid VerticalAlignment="Center" HorizontalAlignment="Center"
                               Cursor="Hand">
-                            <Polygon Grid.Row="2" Grid.Column="0"
-                                     x:Name="polygon"
-                                     Stroke="{TemplateBinding Background}" StrokeThickness="3.5"
+                            <Polygon x:Name="polygon" Stroke="{TemplateBinding Background}" 
+                                     StrokeThickness="4.5"
                                      Fill="Transparent"
-                                     Points="0,0 25,15 0,30" 
-                                     VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                     Points="0,0 0,30 30,30 30,0" 
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"/>
                             <ContentControl/>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding CanStop}" Value="True">
+                            <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Stroke" TargetName="polygon" Value="Transparent"/>
-                            </DataTrigger>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -30,7 +30,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" 
-                                            To="#FF9CE49C" 
+                                            To="#FFEA7575" 
                                             Duration="0:0:0.1"/>
                         </Storyboard>
                     </BeginStoryboard>
@@ -39,16 +39,18 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <ColorAnimation Storyboard.TargetProperty="Background.(SolidColorBrush.Color)" 
-                                            To="#FF63E663" 
+                                            To="#FFED3F3F" 
                                             Duration="0:0:0.1"/>
                         </Storyboard>
                     </BeginStoryboard>
                 </Trigger.ExitActions>
             </Trigger>
-            <DataTrigger Binding="{Binding CanStop}" Value="True">
-                <Setter Property="IsEnabled" Value="False"/>
-                
-            </DataTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="True">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>

@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System;
 using System.Threading;
 using System.Linq;
+using DWTP_Reborn.Views;
 
 namespace DWTP_Reborn.Models.WallpaperChanger
 {
@@ -22,7 +23,7 @@ namespace DWTP_Reborn.Models.WallpaperChanger
         const int SPIF_UPDATEINIFILE = 0x01;
         const int SPIF_SENDWININICHANGE = 0x02;
 
-        List<string> list = new List<string>();
+        public List<string> list = new List<string>();
         Timer timer;
 
         private Mode _mode;
@@ -40,7 +41,7 @@ namespace DWTP_Reborn.Models.WallpaperChanger
         private string[] _extensionList;
         TimeState timeState, previousTimeState;
         enum TimeState { Day, Night }
-        int i = 0;
+        public int i = 0;
 
         public ChangeWallpaper(int frequency, string dayFolderPath, string nightFolderPath, string dayTime, string nightTime, string[] extensionList)
         {
@@ -63,7 +64,7 @@ namespace DWTP_Reborn.Models.WallpaperChanger
 
         public void Start() => timer = new Timer(Change, null, 0, _frequency);
 
-        void checkTime()
+        private void checkTime()
         {
             int currentTime = Convert.ToInt32(DateTime.Now.ToString("H:mm").Replace(":", ""));
 
@@ -74,7 +75,7 @@ namespace DWTP_Reborn.Models.WallpaperChanger
                 timeState = TimeState.Day;
         }
 
-        void getFiles()
+        private void getFiles()
         {
             if (_mode is Mode.Normal)
             {
@@ -97,7 +98,7 @@ namespace DWTP_Reborn.Models.WallpaperChanger
                         list.Add(file);
             }
         }
-        void Change(object? stateinfo)
+        private void Change(object? stateinfo)
         {
 
             if (_mode == Mode.DayNight)
@@ -106,12 +107,27 @@ namespace DWTP_Reborn.Models.WallpaperChanger
             if (previousTimeState != timeState || list.Count == 0)
                 getFiles();
 
-            SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, list[i++], SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
+            try { SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, list[i++], SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE); }
+            catch { }
 
             if (i == list.Count)
                 i = 0;
 
             previousTimeState = timeState;
+        }
+
+        public void Next()
+        {
+            timer.Dispose();
+            timer = new Timer(Change, null, 0, _frequency);
+        }
+        public void Previous()
+        {
+            timer.Dispose();
+            if (i - 2 < 0)
+                return;
+            i -= 2;
+            timer = new Timer(Change, null, 0, _frequency);
         }
 
         public void Stop() => timer?.Dispose();
